@@ -4,6 +4,5 @@ This is chat app for group 1
 1. NOP PHEARUM
 2. Eng Sophanna
 3. Tor SengHok
-4. Sethy Vivat
+4. Sethy Vivat (patch-1)
 5. Be David
-6. Other one
