@@ -1,6 +1,6 @@
 # G1ChatApp
 This is chat app for group 1
-<<<<<<< HEAD
+# HEAD
 edit 1
 =======
 # Members:
@@ -10,4 +10,3 @@ edit 1
 4. Sethy Vivat	(HTML + CSS)
 5. Be David		(Click someone to Chat with)
 6. icanedit
->>>>>>> a642dd09c96e926cf0ec03432a6e24d060e87074
