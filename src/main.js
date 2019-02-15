@@ -50,15 +50,32 @@ function loadMessages() {
     displayMessage(snap.key, data.name, data.text, data.profilePicUrl,data.imageUrl);
     // displayMessage(snap.key, data.name, data.text, data.profilePicUrl, data.imageUrl);
   };
+  var callback1 = function(snap) {
+    var data1 = snap.val();
+    displayMessage1(snap.key, data1.name, data1.text, data1.profilePicUrl,data1.imageUrl);
+    // displayMessage(snap.key, data.name, data.text, data.profilePicUrl, data.imageUrl);
+  };
 
   firebase.database().ref('/messages/').limitToLast(12).on('child_added', callback);
   firebase.database().ref('/messages/').limitToLast(12).on('child_changed', callback);
+  firebase.database().ref('/usermessages/').limitToLast(12).on('child_added', callback1);
+  firebase.database().ref('/usermessages/').limitToLast(12).on('child_changed', callback1);
 }
 
 // Saves a new message on the Firebase DB.
 function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
   return firebase.database().ref('/messages/').push({
+    name: getUserName(),
+    text: messageText,
+    profilePicUrl: getProfilePicUrl()
+  }).catch(function(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  });
+}
+function saveMessage1(messageText) {
+  // Add a new message entry to the Firebase database.
+  return firebase.database().ref('/usermessages/').push({
     name: getUserName(),
     text: messageText,
     profilePicUrl: getProfilePicUrl()
@@ -129,20 +146,6 @@ function authStateObserver(user) {
 
     // We save the Firebase Messaging Device token and enable notifications.
     saveMessagingDeviceToken();
-    
-    // var MESSAGE_AUTH =
-    // '<div class="auth">' +
-    //   '<div class="name"></div>' +
-    //   '<div class="spacing"><div class="pic"></div></div>' +
-    //   '<div class="message"></div>' +
-    // '</div>';
-    // if (userName = getUserName()) {
-    //   var container = document.createElement('div');
-    //   container.innerHTML = MESSAGE_AUTH;
-    //   div = container.firstChild;
-    //   div.setAttribute('id', key);
-    //   messageListElement.appendChild(div);
-    // }
   } else { // User is signed out!
     // Hide user's profile and sign-out button.
     userNameElement.setAttribute('hidden', 'true');
@@ -183,8 +186,8 @@ var MESSAGE_TEMPLATE =
       '<div class="spacing"><div class="pic"></div></div>' +
       '<div class="message"></div>' +
     '</div>';
-var MESSAGE_AUTH =
-    '<div class="message-container-auth">' +
+var MESSAGE_USER =
+    '<div class="message-container">' +
       '<div class="name" id="username"></div>' +
       '<div class="spacing"><div class="pic"></div></div>' +
       '<div class="message"></div>' +
@@ -196,22 +199,19 @@ var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif?a';
 // Displays a Message in the UI.
 function displayMessage(key, name, text, picUrl, imageUrl) {
   var div = document.getElementById(key);
-  // If an element for that message does not exists yet we create it.
-    // if ((!div)&&(div.querySelector('#username').textContent = name)) {
-    //   var container = document.createElement('div');
-    //   container.innerHTML = MESSAGE_AUTH;
-    //   div = container.firstChild;
-    //   div.setAttribute('id', key);
-    //   messageListElement.appendChild(div);
-    // }
-    if (!div) {
-      var container = document.createElement('div');
-        container.innerHTML = MESSAGE_TEMPLATE;
-        div = container.firstChild;
-        div.setAttribute('id', key);
-        messageListElement.appendChild(div);
-    }
-
+  if (!div) {
+    var container = document.createElement('div');
+        // if (div.querySelector('.name').textContent === getUserName()) {
+        //   container.innerHTML = MESSAGE_AUTH;
+        //   div = container.firstChild;
+        //   div.setAttribute('id', key);
+        //   messageListElement.appendChild(div);
+        // }
+    container.innerHTML = MESSAGE_TEMPLATE;
+    div = container.firstChild;
+    div.setAttribute('id', key);
+    messageListElement.appendChild(div);
+  }
   if (picUrl) {
     div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
   }
@@ -233,6 +233,38 @@ function displayMessage(key, name, text, picUrl, imageUrl) {
   // Show the card fading-in and scroll to view the new message.
   setTimeout(function() {div.classList.add('visible')}, 1);
   messageListElement.scrollTop = messageListElement.scrollHeight;
+  messageInputElement.focus();
+}
+function displayMessage1(key, name, text, picUrl, imageUrl) {
+  var div = document.getElementById(key);
+  if (!div) {
+    var container = document.createElement('div');
+    container.innerHTML = MESSAGE_USER;
+    div = container.firstChild;
+    div.setAttribute('id', key);
+    messageListElement1.appendChild(div);
+  }
+  if (picUrl) {
+    div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
+  }
+  div.querySelector('.name').textContent = name;
+  var messageElement = div.querySelector('.message');
+  if (text) { // If the message is text.
+    messageElement.textContent = text;
+    // Replace all line breaks by <br>.
+    messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
+  } else if (imageUrl) { // If the message is an image.
+    var image = document.createElement('img');
+    image.addEventListener('load', function() {
+      messageListElement1.scrollTop = messageListElement1.scrollHeight;
+    });
+    image.src = imageUrl + '&' + new Date().getTime();
+    messageElement.innerHTML = '';
+    messageElement.appendChild(image);
+  }
+  // Show the card fading-in and scroll to view the new message.
+  setTimeout(function() {div.classList.add('visible')}, 1);
+  messageListElement1.scrollTop = messageListElement1.scrollHeight;
   messageInputElement.focus();
 }
 
@@ -260,6 +292,7 @@ checkSetup();
 
 // Shortcuts to DOM Elements.
 var messageListElement = document.getElementById('messages');
+var messageListElement1 = document.getElementById('messages1');
 var messageFormElement = document.getElementById('message-form');
 var messageInputElement = document.getElementById('message');
 var submitButtonElement = document.getElementById('submit');

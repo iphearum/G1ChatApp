@@ -17,15 +17,20 @@ main.container-1{
   border-radius: 10px;
 }
 main, #messages-card {
-  height: 100%;
+  height: calc(100% + 15px);
   padding-bottom: 0;
 }
 #messages-card-container {
   height: calc(100% - 35px);
   padding-bottom: 0;
 }
+.auth{
+  float:right;
+  text-align: right;
+  color: blue;
+}
 #messages-card {
-  margin-top: 15px;
+  margin-top: 0;
 }
 .mdl-layout__header-row span {
   margin-left: 15px;
@@ -73,12 +78,16 @@ main, #messages-card {
   height: auto;
   padding-top: 5px;
   padding-left: 10px;
+  cursor: pointer;
 }
 #messages-card{
   border-radius: 10px;
   padding: 0px 5px;
 }
 /* my css */
+.c-message{
+  padding: 0px 10px;
+}
 .messages {
   flex: 1 1 auto;
   /*  color: rgba(255, 255, 255, .5);
@@ -192,7 +201,8 @@ main, #messages-card {
 #message-form {
   display: flex;
   flex-direction: row;
-  width: calc(100% - 48px);
+  /* width: calc(100% - 45px); */
+  width: 100%;
   float: left;
 }
 #image-form {
@@ -316,10 +326,8 @@ main, #messages-card {
     width: 190px;
     z-index: 1;
     background: white;
-    height: 93.4%;
+    height: 95.6%;
     padding: 10px;
-    margin-top: 24px; 
-    margin-bottom: 200px;
     border-radius: 10px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   }

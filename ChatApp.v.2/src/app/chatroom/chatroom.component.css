@@ -1,0 +1,44 @@
+.mainContent{
+    display: flex;
+}
+.userListWrapper {
+    background-color: rgb(255, 255, 255);
+    color: #fff;
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2em;
+    flex: 1.5;
+    order: 1;
+    padding:0px 0px 2px 5px;
+    border-right: 1px solid #222;
+}
+.chat {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2em;
+    flex: 5;
+    order: 2;
+    flex-direction: column;
+}
+.feedWrapper {
+    display: flex;
+    overflow-y: scroll;
+    padding:20px 0px 0px 24px;
+    margin-top:-45px;
+}
+
+.chatFormWrapper {
+    display: flex;
+    height: 45px;
+    z-index: 3;
+    margin-left: 25px;
+}
+
+#scroll-style::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+app-user-list {
+    width: 100%;
+}
