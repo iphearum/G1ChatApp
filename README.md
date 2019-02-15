@@ -1,7 +1,10 @@
 # G1ChatApp
 This is chat app for group 1
 # HEAD
-edit 1
+ChatApp.v.2
+1. install angular
+2. npm install
+3. ng serve or ng dev
 =======
 # Members:
 1. NOP PHEARUM	(Login + Chat + Accessing with Firebase)
