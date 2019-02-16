@@ -10,6 +10,7 @@ import * as firebase from 'firebase/app';
 })
 export class NavbarComponent implements OnInit {
   user: Observable<firebase.User>;
+  displayName: string;
   userEmail: string;
 
   constructor(private authService: AuthService) { }
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
     this.user = this.authService.authUser();
     this.user.subscribe(user => {
       if (user) {
+        // this.userName = user.displayName;
         this.userEmail = user.email;
       }
     });

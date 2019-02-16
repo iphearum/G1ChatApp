@@ -13,7 +13,19 @@ import { ChatMessage } from '../models/chat-message.model';
 // }
 
 @Injectable()
+// export class UserListComponent {
+//   users: User[];
+
+//   constructor(chat: ChatService) {
+//     chat.getUsers().subscribe(users => {
+//       this.users = users;
+//     });
+//   }
+// }
+
 export class ChatService {
+  chat: ChatService;
+
   user: firebase.User;
   chatMessages: FirebaseListObservable<ChatMessage[]>;
   chatMessage: ChatMessage;
@@ -32,6 +44,7 @@ export class ChatService {
             this.userName = a.displayName;
           });
         });
+
     }
 
   getUser() {
@@ -52,15 +65,34 @@ export class ChatService {
     this.chatMessages.push({
       message: msg,
       timeSent: timestamp,
-      // userName: this.user.email,
       userName: this.userName,
-      // userName: "Unkwon",
       email: email });
   }
-
+  sendMessPersonal(msp: string){
+    const timestamp = this.getTimeStamp();
+    const email = this.user.email;
+    this.chatMessages = this.getMessagesPersonal();
+    this.chatMessages.push({
+      message: msp,
+      timeSent: timestamp,
+      userName: this.userName,
+      email: email });
+  }
   getMessages(): FirebaseListObservable<ChatMessage[]> {
     // query to create our message feed binding
     return this.db.list('messages', {
+      query: {
+        limitToLast: 25,
+        orderByKey: true
+      }
+    });
+  }
+
+  getMessagesPersonal(): FirebaseListObservable<ChatMessage[]> {
+    // query to create our message feed binding
+    const createMess = document.getElementById('userName').nodeValue;
+    
+    return this.db.list(createMess+this.userName, {
       query: {
         limitToLast: 25,
         orderByKey: true

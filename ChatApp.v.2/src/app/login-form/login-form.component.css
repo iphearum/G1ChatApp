@@ -1,18 +1,18 @@
 .container{
   height: 100%;
   overflow:hidden;
-  background: 
+  /* background: 
     linear-gradient(45deg, rgba(255,103,0,0.3), rgba(0, 0, 80, 0.9)),
-    url('../../assets/img/login-5.png') center center no-repeat;;
+    url('../../assets/img/login-5.png') center center no-repeat;; */
 }
 
 .loginCard{
   display: block;
-  border: 1px solid #000;
-  border-radius: 4px;
+  /* border: 1px solid #000; */
+  border-radius: 10px;
   background-color: rgba(255,255,255,0.85);
-  width: 700px;
-  height: 420px;
+  width: 80%;
+  height: auto;
   margin: auto;
   margin-top: 40px;
   text-align: center;
@@ -20,7 +20,6 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.17), 0 1px 2px rgba(0,0,0,0.24);
   overflow: hidden;
 }
-
 .formInput{
   margin: auto;
   margin-top: 16px;
@@ -32,6 +31,7 @@
   border: #ccc 1px solid;
   padding: 8px;
   font-size:1em;
+  outline: none;
 }
 
 .btn{
@@ -48,28 +48,31 @@
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.17), 0 1px 2px rgba(0,0,0,0.24);
   transition: ease-in 0.2s;
+  text-transform: uppercase;
 }
 
 #btn-signUp{
-    background-color:#2A2845;
+    background-color:rgb(43, 125, 233);
 }
 
 #btn-signUp:hover{
-    background-color:#4A4865;
+    background-color:rgb(84, 125, 240);
     transition: ease-in 0.2s;
 }
 
 #btn-login{
-    background-color:#4A4875;
+    background-color:rgb(45, 129, 238);
 }
 
 #btn-login:hover{
-    background-color:#5A5895;
+    background-color:rgb(91, 171, 224);
     transition: ease-in 0.2s;
 }
 
 h2{
     height: 2em;
+    text-transform: uppercase;
+    color: rgb(79, 152, 248);
 }
 
 a {

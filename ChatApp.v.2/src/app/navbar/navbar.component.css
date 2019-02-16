@@ -52,3 +52,8 @@
     padding-right: 16px;
     font-weight: bold;
 }
+@media only screen and (max-width: 768px){
+    #logo{
+        display: none;
+    }
+}
