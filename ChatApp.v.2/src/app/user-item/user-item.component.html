@@ -1,7 +1,15 @@
 <div class="userItem">
   <span class="status" [ngClass]=(user.status)>
   </span>
-  <span class="userName">
+  <span class="userName" id="userName">
     {{user.displayName}}
   </span>
 </div>
+
+<script>
+$("#userName").click(function(){
+  // var getuser = document.getElementById('userName');
+  // getuser.style.display="none";
+  alert("hello world");
+})
+</script>

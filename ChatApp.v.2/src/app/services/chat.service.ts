@@ -68,38 +68,20 @@ export class ChatService {
       userName: this.userName,
       email: email });
   }
-  sendMessPersonal(msp: string){
-    const timestamp = this.getTimeStamp();
-    const email = this.user.email;
-    this.chatMessages = this.getMessagesPersonal();
-    this.chatMessages.push({
-      message: msp,
-      timeSent: timestamp,
-      userName: this.userName,
-      email: email });
-  }
+  
   getMessages(): FirebaseListObservable<ChatMessage[]> {
     // query to create our message feed binding
+    // const createMess = document.getElementById('userName').nodeValue;
+    const createMess = this.userName;
     return this.db.list('messages', {
+    // return this.db.list('hello'+createMess, {
       query: {
         limitToLast: 25,
         orderByKey: true
       }
     });
   }
-
-  getMessagesPersonal(): FirebaseListObservable<ChatMessage[]> {
-    // query to create our message feed binding
-    const createMess = document.getElementById('userName').nodeValue;
-    
-    return this.db.list(createMess+this.userName, {
-      query: {
-        limitToLast: 25,
-        orderByKey: true
-      }
-    });
-  }
-
+  
   getTimeStamp() {
     const now = new Date();
     const date = now.getUTCFullYear() + '/' +

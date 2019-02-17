@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 
 import { appRoutes } from '../routes';
 import { environment } from '../environments/environment';
+import { MessagePerComponent } from './message-per/message-per.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { environment } from '../environments/environment';
     SignupFormComponent,
     NavbarComponent,
     UserListComponent,
-    UserItemComponent
+    UserItemComponent,
+    MessagePerComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ export class NavbarComponent implements OnInit {
         // this.userName = user.displayName;
         this.userEmail = user.email;
       }
+      else{
+        alert('What wrong with user');
+      }
     });
   }
 
