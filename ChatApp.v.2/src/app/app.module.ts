@@ -22,7 +22,7 @@ import { AuthService } from './services/auth.service';
 
 import { appRoutes } from '../routes';
 import { environment } from '../environments/environment';
-import { MessagePerComponent } from './message-per/message-per.component';
+// import { MessagePerComponent } from './message-per/message-per.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import { MessagePerComponent } from './message-per/message-per.component';
     NavbarComponent,
     UserListComponent,
     UserItemComponent,
-    MessagePerComponent
+    // MessagePerComponent
   ],
   imports: [
     BrowserModule,

@@ -11,10 +11,6 @@
     float: right;
     text-align: right;
 }
-.isOwnMessageContainer::after{
-    left: auto;
-    right: 0;
-}
 
 .messageData{
     flex: 1;
@@ -51,8 +47,8 @@
     clear: both;
     float: left;
     padding: 6px 10px 7px;
-    border-radius: 0px 20px 20px 20px;
-    background: lightgrey;
+    border-radius: 0px 15px 10px 15px;
+    background: rgb(255, 255, 255);
     color: black;
     font-size: 16px;
     line-height: 1.4;
@@ -62,7 +58,8 @@
 
 .isOwnMessageContent{
     background-color: rgb(19, 138, 223);
-    border-radius: 20px 20px 0 20px;
+    border-radius: 10px 15px 0 15px;
     color: rgb(255, 255, 255);
     margin-bottom: -2px;
+    /* margin-right: -200px; */
 }

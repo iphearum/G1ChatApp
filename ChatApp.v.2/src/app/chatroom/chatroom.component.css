@@ -24,12 +24,14 @@
     overflow-y: scroll;
     padding:20px 0px 0px 24px;
     margin-top:-60px;
+    /* background: rgba(243, 230, 212, 0.616); */
 }
 
 .chatFormWrapper {
     display: flex;
     height: 60px;
     z-index: 3;
+    background: white;
     padding-bottom: 10px;
     padding-top:10px; 
     box-shadow: 0px -3px 3px 0px rgb(182, 181, 181);

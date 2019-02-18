@@ -1,6 +1,6 @@
 <div class="navBar">
     <div id="logo"></div>
-    <div id="heading"><a routerLink="/">ChatApp</a></div>
+    <div id="heading"><a routerLink="/" onclick="click()">ChatApp</a></div>
   <div class="links">
     <span>
       <a *ngIf="!(user|async)?.uid" href="#" (click)="login()" style="text-transform: uppercase;">Login</a>
